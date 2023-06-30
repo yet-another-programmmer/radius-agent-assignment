@@ -21,7 +21,7 @@ class RemoteConfigRepository @Inject constructor(myDatabase: MyDatabase) {
             return null
         }
         val config = remoteConfigDao.getConfig(KEY)
-        if (System.currentTimeMillis() - config.time < TimeUnit.MINUTES.toMillis(1)) {
+        if (System.currentTimeMillis() - config.time < TimeUnit.DAYS.toMillis(1)) {
             return jsonAdapter.fromJson(config.value)
         }
         return null
